@@ -1,113 +1,297 @@
-import Image from 'next/image'
+"use client";
+
+import { motion } from "framer-motion";
+import { Separator } from "@/components/ui/separator";
+import useMousePosition from "@/components/utils/mouse-position";
+import MatrixRainingCode from "@/components/MatrixRain";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import Particles from "@/components/particles";
 
 export default function Home() {
+  const { x, y } = useMousePosition();
+  const size: number = 500;
+
+  const myworks = [
+    {
+      title: "Projects",
+      href: "/projects",
+      description: "A Curated list of all my work.",
+      initialY: -40,
+      initialX: -40,
+    },
+    {
+      title: "Blogs",
+      href: "/blogs",
+      description: "A small research on topics that grab my attention.",
+      initialY: 40,
+      initialX: 40,
+    },
+    {
+      title: "Writeups",
+      href: "/writeups?sbd=latest",
+      description:
+        "All my writeups and walkthroughs that I documented through out my career.",
+      initialY: -40,
+      initialX: -40,
+    },
+  ];
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
+    <main className="w-full flex flex-col justify-start items- overflow-hidden">
+      <motion.div
+        initial={{ y: 30, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ ease: "easeOut", duration: 0.5 }}
+        className="relative w-full flex justify-center items-center h-[calc(100vh-100px)] max-h-[1080px]"
+      >
+        <Particles
+          className="absolute inset-0 pointer-events-none lg:hidden"
+          quantity={100}
+          staticity={10}
         />
-      </div>
+        <div className="absolute flex flex-col justify-center items-center rounded-full">
+          <h4 className="scroll-m-20 text-md md:text-xl font-semibold tracking-widest">
+            Hey Folks!!, I am
+          </h4>
+          <h1 className="scroll-m-20 text-2xl md:text-6xl font-extrabold tracking-widest xl:text-8xl my-8">
+            Thamizhiniyan C S
+          </h1>
+          <div className="flex items-center h-[50px]">
+            <motion.h3
+              initial={{ x: 20, opacity: 0 }}
+              animate={{ x: [null, -10, 0], opacity: 1 }}
+              transition={{ ease: "easeOut", duration: 0.5, delay: 0.5 }}
+              className="scroll-m-20 text-md text-right md:text-2xl font-semibold tracking-widest"
+            >
+              Penetration Tester
+            </motion.h3>
+            <Separator className="bg-primary mx-5" orientation="vertical" />
+            <motion.h3
+              initial={{ x: -20, opacity: 0 }}
+              animate={{ x: [null, 10, 0], opacity: 1 }}
+              transition={{ ease: "easeOut", duration: 0.5, delay: 0.5 }}
+              className="scroll-m-20 text-md text-left md:text-2xl font-semibold tracking-widest"
+            >
+              Next.js Developer
+            </motion.h3>
+          </div>
+          <Link
+            href="#about"
+            className="absolute top-[350px] md:top-[450px] xl:top-[400px] flex flex-col justify-center items-center z-[2]"
+          >
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 1 }}
+              className="flex flex-col justify-center items-center"
+            >
+              <p className="tracking-widest text-sm md:text-lg">
+                Click To Scroll
+              </p>
+              <span className="material-symbols-outlined text-[2rem] md:text-[4rem] xl:text-[6rem] animate-bounce ">
+                expand_more
+              </span>
+            </motion.div>
+          </Link>
+        </div>
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
+        <motion.div
+          animate={{
+            WebkitMaskPosition: `${x - size / 2}px ${y - size / 2}px`,
+          }}
+          transition={{ type: "tween", ease: "backOut" }}
+          className="hidden w-full h-full lg:flex justify-center items-center overflow-hidden mouse-mask text-primary "
         >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+          <div className="absolute flex flex-col justify-center items-center rounded-full">
+            <MatrixRainingCode className="z-[1]" />
+            <h4 className="scroll-m-20 text-xl font-semibold tracking-widest z-[2]">
+              Hey Folks!!, I am
+            </h4>
+            <h1 className="scroll-m-20 text-4xl font-extrabold tracking-widest z-[2] lg:text-8xl my-8">
+              Thamizhiniyan C S
+            </h1>
+            <div className="flex items-center h-[50px] z-[2]">
+              <h3 className="scroll-m-20 text-2xl font-semibold tracking-widest">
+                Penetration Tester
+              </h3>
+              <Separator className="bg-primary mx-5" orientation="vertical" />
+              <h3 className="scroll-m-20 text-2xl font-semibold tracking-widest">
+                Next.js Developer
+              </h3>
+            </div>
+            <Link
+              href="#about"
+              className="absolute top-[350px] md:top-[450px] xl:top-[400px] flex flex-col justify-center items-center z-[2] text-primary"
+            >
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 1 }}
+                className="flex flex-col justify-center items-center text-primary dark:text-primary"
+              >
+                <p className="tracking-widest text-primary md:text-lg">
+                  Click To Scroll
+                </p>
+                <span className="material-symbols-outlined text-[2rem] md:text-[4rem] xl:text-[6rem] animate-bounce text-primary">
+                  expand_more
+                </span>
+              </motion.div>
+            </Link>
+          </div>
+        </motion.div>
+      </motion.div>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+      <motion.div
+        id="about"
+        className="relative w-full h-[100vh] flex flex-col pt-[100px] items-center justify-start max-h-[1080px]"
+      >
+        <h2 className="w-full h-[100px] flex justify-center items-center scroll-m-20 text-2xl md:text-4xl font-extrabold tracking-widest z-[2] lg:text-8xl my-8">
+          <motion.span
+            initial={{ x: -40, opacity: 0 }}
+            transition={{ ease: "easeIn", duration: 0.5, delay: 0.5 }}
+            whileInView={{ x: 0, opacity: 1 }}
+          >
+            ABOUT
+          </motion.span>
+          &nbsp;
+          <motion.span
+            initial={{ x: 40, opacity: 0 }}
+            transition={{ ease: "easeIn", duration: 0.5, delay: 0.5 }}
+            whileInView={{ x: 0, opacity: 1 }}
+          >
+            MYSELF
+          </motion.span>
+        </h2>
+        <motion.div className="w-[90%] lg:w-[70%] xl:h-[50%] flex flex-col justify-center items-center z-[2]  rounded-xl xl:p-4 bg-none">
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ ease: "easeIn", duration: 0.5, delay: 1 }}
+            className="leading-10 text-sm md:text-xl md:leading-[60px] xl:text-2xl xl:leading-[80px] [&:not(:first-child)]:mt-6 xl:w-[70%] text-justify"
+          >
+            Hello, everyone. I&apos;m{" "}
+            <span className="text-primary">Thamizhiniyan C S</span>, an Ethical
+            hacker, Next.js Developer, and Cyber Security enthusiast currently
+            in my third year of engineering studies. My expertise is centered
+            around cyber security, digital forensics, and crafting engaging web
+            applications with Next.js.
+          </motion.p>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
-          </p>
-        </a>
+          <Link href="/about" className="my-5">
+            <Button
+              variant="outline"
+              className="w-[90vw] h-14 flex justify-center items-center flex-col md:w-[500px] md:h-[100px] rounded-full p-0"
+            >
+              <p className="leading-7 lg:text-2xl [&:not(:first-child)]:mt-6 text-justify">
+                Click To Know More About Me
+              </p>
+            </Button>
+          </Link>
+        </motion.div>
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
+        <Particles
+          className="absolute inset-0 pointer-events-none"
+          quantity={100}
+          staticity={10}
+        />
+
+        <Link
+          href="#myworks"
+          className="absolute bottom-[2rem] xl:bottom-0 flex flex-col justify-center items-center z-[2]"
         >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 1 }}
+            className="flex flex-col justify-center items-center"
+          >
+            <p className="tracking-widest md:text-lg">Click To Scroll</p>
+            <span className="material-symbols-outlined text-[2rem] md:text-[4rem] xl:text-[6rem] animate-bounce ">
+              expand_more
             </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+          </motion.div>
+        </Link>
+      </motion.div>
+
+      <motion.div
+        id="myworks"
+        className="relative w-full h-[100vh] flex flex-col pt-[100px] items-center justify-start max-h-[1080px]"
+      >
+        <h2 className="w-full h-[100px] flex justify-center items-center scroll-m-20 text-2xl md:text-4xl font-extrabold tracking-widest z-[2] lg:text-8xl my-8">
+          <motion.span
+            initial={{ x: -40, opacity: 0 }}
+            transition={{ ease: "easeIn", duration: 0.5, delay: 0.5 }}
+            whileInView={{ x: 0, opacity: 1 }}
+          >
+            MY
+          </motion.span>
+          &nbsp;
+          <motion.span
+            initial={{ x: 40, opacity: 0 }}
+            transition={{ ease: "easeIn", duration: 0.5, delay: 0.5 }}
+            whileInView={{ x: 0, opacity: 1 }}
+          >
+            WORKS
+          </motion.span>
+        </h2>
+
+        <Particles
+          className="absolute inset-0 pointer-events-none"
+          quantity={100}
+          staticity={10}
+        />
+        <div className="lg:hidden relative md:w-[95%] xl:w-[80%] h-full flex flex-col md:flex-row justify-evenly items-center">
+          {myworks.map((each, index) => (
+            <motion.div
+              initial={{ x: each.initialX, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{
+                ease: "easeIn",
+                duration: 0.2,
+                delay: 1 + index / 2,
+              }}
+              key={`Work_${each.title}`}
+              className="w-[90] xs:w-[400px] h-[150px] xl:h-[500px] flex justify-center items-center rounded-xl bg-black/10 dark:bg-white/10 backdrop-blur-sm"
+            >
+              <Link
+                href={each.href}
+                className="relative w-full h-full flex flex-col justify-center items-center text-center p-4 hover:backdrop-blur-md"
+              >
+                <h2 className="scroll-m-20 pb-2 text-3xl font-semibold tracking-tight z-[1]">
+                  {each.title}
+                </h2>
+                <p>{each.description}</p>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+        <div className="hidden lg:flex relative md:w-[95%] xl:w-[80%] h-full flex-col md:flex-row justify-evenly items-center">
+          {myworks.map((each, index) => (
+            <motion.div
+              initial={{ y: each.initialY, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{
+                ease: "easeIn",
+                duration: 0.2,
+                delay: 1 + index / 2,
+              }}
+              key={`Work_${each.title}`}
+              className="w-[200px] h-[300px] lg:w-[300px] lg:h-[400px] 2xl:w-[400px] xl:h-[500px] flex justify-center items-center rounded-xl bg-black/10 dark:bg-white/10 backdrop-blur-sm"
+            >
+              <Link
+                href={each.href}
+                className="relative w-full h-full flex flex-col justify-center items-center text-center p-4 hover:backdrop-blur-md"
+              >
+                <h2 className="scroll-m-20 pb-2 text-3xl font-semibold tracking-tight z-[1]">
+                  {each.title}
+                </h2>
+                <p>{each.description}</p>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
     </main>
-  )
+  );
 }

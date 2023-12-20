@@ -1,4 +1,20 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {}
+// @ts-check
+import withPlaiceholder from "@plaiceholder/next";
 
-module.exports = nextConfig
+/** @type {import('next').NextConfig} */
+
+const config = {
+  transpilePackages: ["@plaiceholder/ui"],
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "raw.githubusercontent.com",
+        port: "",
+        pathname: "/Thamizhiniyan18/Writeups/main/**",
+      },
+    ],
+  },
+};
+
+export default withPlaiceholder(config);
