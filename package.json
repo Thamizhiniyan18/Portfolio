@@ -51,7 +51,7 @@
     "hast-util-from-html-isomorphic": "^2.0.0",
     "highlight.js": "^11.9.0",
     "mdast-util-toc": "^7.0.0",
-    "next": "14.0.4",
+    "next": "14.1.0",
     "next-mdx-remote": "^4.4.1",
     "next-themes": "^0.2.1",
     "octokit": "^3.1.2",
